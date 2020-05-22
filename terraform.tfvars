@@ -3,9 +3,14 @@ aws_region = "us-east-1"
 aws_account_id = "188251670453"
 
 # VPC, Subnets vars
-vpc_id = ""
-vpc_name = ""
-subnets = ["",""]
+vpc_id = "vpc-071c2bff610c5196a"
+vpc_name = "priv-vpc"
+subnets = ["subnet-03f38717dce618340","subnet-006cf63f5cf79247d"]
+
+# Endpoint vars
+endpoints_required = "false"
+interface_endpoints = ["elasticbeanstalk",".elasticbeanstalk-health","cloudformation","monitoring","sqs"]
+enable_s3_endpoint = "false"
 
 # IAM role policy vars
 ec2_policies = ["AWSElasticBeanstalkWebTier","AWSElasticBeanstalkMulticontainerDocker","AWSElasticBeanstalkWorkerTier"]
