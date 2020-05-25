@@ -20,8 +20,8 @@ data "aws_s3_bucket" "eb-bucket" {
 resource "aws_s3_bucket_object" "eb-bucket-object" {
   count = var.create_s3_bucket == true ? 1: 0
   bucket = aws_s3_bucket.eb-bucket.id
-  key    = "eb-${var.app_name}-appcode/sample_tomcat.war"
-  source = "./sample_tomcat.war"
+  key    = var.s3_object_path
+  source = "./sample_${var.platform}"
   depends_on = [
     aws_s3_bucket.eb-bucket,
     ]
