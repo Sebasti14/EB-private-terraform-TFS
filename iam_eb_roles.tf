@@ -1,6 +1,7 @@
 # Creating the roles required for Elastic beanstalk ##
 
 #resource "aws_iam_role" "eb-ec2-role" {
+# count = var.create_eb_roles == true ? 1 :0
 #    name = "eb-ec2-role"
 #    assume_role_policy = <<EOF
 #{
@@ -20,11 +21,13 @@
 #}
 
 #resource "aws_iam_instance_profile" "eb-ec2-role" {
+# count = var.create_eb_roles == true ? 1 :0
 #    name = "eb-ec2-role"
 #    role = aws_iam_role.eb-ec2-role.name
 #}
 
 #resource "aws_iam_role" "eb-service-role" {
+# count = var.create_eb_roles == true ? 1 :0
 #    name = "eb-service-role"
 #    assume_role_policy = <<EOF
 #{
