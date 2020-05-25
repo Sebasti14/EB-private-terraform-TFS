@@ -12,7 +12,7 @@ resource "aws_security_group" "eb-lb-sg" {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    cidr_blocks = ["data.aws_vpc.eb-vpc.cidr_block"]
+    cidr_blocks = ["${data.aws_vpc.eb-vpc.cidr_block}"]
   }
   tags = {
     Name = "AWSEB-LBsg"
