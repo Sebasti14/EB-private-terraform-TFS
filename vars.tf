@@ -49,6 +49,19 @@ variable "service_policies" {
   description = "The list of policies to attach to EB service role"
 }
 
+variable "create_s3_bucket" {
+  description = "Booelan 'true' or 'false' to create new s3 bucket to store application file and logs"
+}
+
+variable "s3_bucket_name" {
+  description = " Name of the existing S3 bucket where the object (application file) is stored"
+  }
+
+variable "s3_object_path" {
+  description = "Full path of the object in the S3 bucket"
+  }
+  
+
 variable "app_name" {
   description = "Name of the application to be deployed in EB"
 }
