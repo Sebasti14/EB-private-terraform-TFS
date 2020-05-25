@@ -32,7 +32,7 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
   setting {
     namespace = "aws:ec2:vpc"
     name = "Subnets"
-    value = join(",", ${var.subnets})
+    value = join(",", ${var.subnet_ids})
   }
   setting {
     namespace = "aws:ec2:vpc"
