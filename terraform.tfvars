@@ -13,6 +13,9 @@ interface_endpoints = ["elasticbeanstalk",".elasticbeanstalk-health","cloudforma
 enable_s3_endpoint = "false"
 
 # IAM role policy vars
+create_eb_roles = "false"
+ec2_role_name = "aws-elasticbeanstalk-ec2-role"
+eb_service_role_name = "aws-elasticbeanstalk-service-role"
 ec2_policies = ["AWSElasticBeanstalkWebTier","AWSElasticBeanstalkMulticontainerDocker","AWSElasticBeanstalkWorkerTier"]
 service_policies = ["AWSElasticBeanstalkEnhancedHealth","AWSElasticBeanstalkService"]
 
