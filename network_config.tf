@@ -8,6 +8,10 @@ data "aws_vpc" "eb-vpc" {
 #   values = var.vpc_name
 }
 
+data "aws_subnet" "private" {
+  count = length(var.subnet_ids)
+  id = var.subnet_ids[count.index]
+}
 
 ## Create security groups for EB VPC endpoints ##
 
