@@ -1,5 +1,5 @@
 resource "aws_security_group" "eb-lb-sg" {
-  vpc_id = aws_vpc.main-vpc.id
+  vpc_id = data.aws_vpc.eb-vpc.id
   name = "eb-lb-sg"
   description = "AWSEB-LBsecuritygroup"
   egress {
@@ -12,7 +12,7 @@ resource "aws_security_group" "eb-lb-sg" {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["data.aws_vpc.eb-vpc.cidr_block"]
   }
   tags = {
     Name = "AWSEB-LBsg"
@@ -20,7 +20,7 @@ resource "aws_security_group" "eb-lb-sg" {
 }
 
 #resource "aws_security_group" "eb-vpc-sg" {
-#  vpc_id = aws_vpc.main-vpc.id
+#  vpc_id = data.aws_vpc.eb-vpc.id
 #  name = "eb-vpc-sg"
 #  description = "AWSEB-VPCsecuritygroup"
 #  egress {
