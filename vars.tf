@@ -13,7 +13,7 @@ variable "vpc_name" {
   description = "Name of the VPC where the beanstalk environment should be setup"
 }
 
-variable "subnets" {
+variable "subnet_ids" {
   description = "List of private subnet IDs in the format ["subnet-xxxx1","subnet-xxxxx2",..]"
 }
 
@@ -22,7 +22,7 @@ variable "endpoints_required" {
 }
 
 variable "interface_endpoints" {
-  description = "List of interface endpoints to be created in the format ["elasticbeanstalk",".elasticbeanstalk-health",...]"
+  description = "List of interface endpoints to be created in the format ["elasticbeanstalk","elasticbeanstalk-health",...]"
 }
 
 variable "enable_s3_endpoint" {
@@ -70,5 +70,5 @@ variable "min_autoscale_num" {
 }
 
 variable "max_autoscale_num" {
-  description = "maximum number upto which the instances can be scaled in EB"
+  description = "Maximum number upto which the instances can be scaled in EB"
 }
