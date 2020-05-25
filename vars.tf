@@ -29,6 +29,18 @@ variable "enable_s3_endpoint" {
   description = "Boolean 'true' or 'false' stating if any S3 gateway endpoint is required"
 }
 
+variable "create_eb_roles" {
+  description = "Boolean 'true' or 'false' stating if creation of Elastic beanstalk EC2 and service role is required"
+  }
+
+variable "ec2_role_name" {
+  description = "Role name for the EC2 IAM instance profile in beanstalk"
+  }
+
+variable "eb_service_role_name" {
+  description = "Elastic Beanstalk service role name"
+  }
+
 variable "ec2_policies" {
   description = "The list of policies to attach to EB EC2 role"
 }
