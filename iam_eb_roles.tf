@@ -20,11 +20,22 @@
 #EOF
 #}
 
+data "aws_iam_role" "eb-ec2-role" {
+  count = var.create_eb_roles == true ? 0 :1
+  name = var.ec2_role_name
+}
+
 #resource "aws_iam_instance_profile" "eb-ec2-role" {
 # count = var.create_eb_roles == true ? 1 :0
 #    name = "eb-ec2-role"
 #    role = aws_iam_role.eb-ec2-role.name
 #}
+
+resource "aws_iam_instance_profile" "eb-ec2-role" {
+ count = var.create_eb_roles == true ? 0 :1
+    name = "eb-ec2-role"
+    role = data.aws_iam_role.eb-ec2-role.name
+}
 
 #resource "aws_iam_role" "eb-service-role" {
 # count = var.create_eb_roles == true ? 1 :0
@@ -46,10 +57,15 @@
 #EOF
 #}
 
+data "aws_iam_role" "eb-ec2-role" {
+  count = var.create_eb_roles == true ? 0 :1
+  name = var.eb_service_role_name
+}
 
 ## Attaching EB policies to the roles created ##
 
 #resource "aws_iam_policy_attachment" "eb-ec2-role-attach" {
+# count = var.create_eb_roles == true ? 1 :0
 #    for_each = toset(var.ec2_policies)
 #    name = "eb-ec2-role-attach-policy-${each.value}"
 #    roles = [aws_iam_role.eb-ec2-role.name]
@@ -57,6 +73,7 @@
 #}
 
 #resource "aws_iam_policy_attachment" "eb-service-role-attach" {
+# count = var.create_eb_roles == true ? 1 :0
 #    for_each = toset(var.service_policies)
 #    name = "eb-service-role-attach-policy-${each.value}"
 #    roles = [aws_iam_role.eb-service-role.name]
