@@ -5,8 +5,28 @@ variable "aws_region" {
   description = "AWS account ID in that region where the application needs to be deployed"
 }
 
-variable "aws_subnet_count" {
-  description = "The number of subnets required in VPC"
+ variable "vpc_id" {
+  description = "VPC ID where the beanstalk environment should be setup"
+}
+
+variable "vpc_name" {
+  description = "Name of the VPC where the beanstalk environment should be setup"
+}
+
+variable "subnets" {
+  description = "List of private subnet IDs in the format ["subnet-xxxx1","subnet-xxxxx2",..]"
+}
+
+variable "endpoints_required" {
+  description = "Boolean 'true' or 'false' stating if any interface endpoints are required"
+}
+
+variable "interface_endpoints" {
+  description = "List of interface endpoints to be created in the format ["elasticbeanstalk",".elasticbeanstalk-health",...]"
+}
+
+variable "enable_s3_endpoint" {
+  description = "Boolean 'true' or 'false' stating if any S3 gateway endpoint is required"
 }
 
 variable "ec2_policies" {
