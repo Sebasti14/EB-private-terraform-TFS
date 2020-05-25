@@ -8,11 +8,14 @@ resource "aws_elastic_beanstalk_application" "app" {
 ## Creating EB application version to source code from S3 ##
 
 resource "aws_elastic_beanstalk_application_version" "app-code" {
-  name        = var.app_name
+  name        = "${var.app_name}-${var.app_version}"
   application = var.app_name
   description = "Elastic Beanstalk application - ${var.app_name}-${var.app_version}"
-  bucket      = "EB-${var.aws_region}-environment"
-  key         = aws_s3_bucket_object.eb-bucket-object.id
+  bucket = aws_s3_bucket.eb-bucket.id || data.aws_s3_bucket.eb-bucket.id
+  key = aws_s3_bucket_object.eb-bucket-object.id || data.aws_s3_bucket_object.eb-bucket-object.id
+#  bucket      = var.s3_bucket_name  
+#  key         = aws_s3_bucket_object.eb-bucket-object.id
+  
 }
 
 ## Creating the EB environment ##
