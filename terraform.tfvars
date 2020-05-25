@@ -19,6 +19,11 @@ eb_service_role_name = "aws-elasticbeanstalk-service-role"
 ec2_policies = ["AWSElasticBeanstalkWebTier","AWSElasticBeanstalkMulticontainerDocker","AWSElasticBeanstalkWorkerTier"]
 service_policies = ["AWSElasticBeanstalkEnhancedHealth","AWSElasticBeanstalkService"]
 
+# S3 bucket vars
+create_s3_bucket= "true"
+s3_bucket_name = ""
+s3_object_path = ""
+
 # EC2, Autoscaling vars
 instance_type = "t2.micro"
 min_autoscale_num = 1
