@@ -32,7 +32,7 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
   setting {
     namespace = "aws:ec2:vpc"
     name = "Subnets"
-    value = join(",", ${var.subnet_ids})
+    value = join(",", data.aws_subnet.private.*.id)
   }
   setting {
     namespace = "aws:ec2:vpc"
@@ -43,13 +43,13 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name = "IamInstanceProfile"
-    value = aws_iam_role.eb-ec2-role.name
+    value = data.aws_iam_role.eb-ec2-role.name
   }
-  setting {
-    namespace = "aws:autoscaling:launchconfiguration"
-    name = "SecurityGroups"
-    value = aws_security_group.eb-vpc-sg.id
-  }
+#  setting {
+#    namespace = "aws:autoscaling:launchconfiguration"
+#    name = "SecurityGroups"
+#    value = aws_security_group.eb-vpc-sg.id
+#  }
 
 #  setting {
 #    namespace = "aws:autoscaling:launchconfiguration"
@@ -65,7 +65,7 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
   setting {
     namespace = "aws:elasticbeanstalk:environment"
     name = "ServiceRole"
-    value = aws_iam_role.eb-service-role.name
+    value = data.aws_iam_role.eb-service-role.name
   }
   setting {
     namespace = "aws:elasticbeanstalk:environment"
@@ -80,7 +80,7 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
   setting {
     namespace = "aws:ec2:vpc"
     name = "ELBSubnets"
-    value = join(",", ${var.subnets})
+    value = join(",", data.aws_subnet_private.*.id)
   }
 
 ## Settings for Classic load balancer ##
@@ -165,10 +165,10 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
 #  }
   depends_on = [
 #    aws_key_pair.eb-ec2-key-pair,
-    aws_security_group.eb-vpc-sg,
+#    aws_security_group.eb-vpc-sg,
     aws_security_group.eb-lb-sg,
     aws_s3_bucket_object.eb-bucket-object,
-    aws_iam_policy_attachment.eb-ec2-role-attach,
-    aws_iam_policy_attachment.eb-service-role-attach,
+#    aws_iam_policy_attachment.eb-ec2-role-attach,
+#    aws_iam_policy_attachment.eb-service-role-attach,
   ]
 }
