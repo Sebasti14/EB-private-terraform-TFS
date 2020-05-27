@@ -20,9 +20,9 @@
 #EOF
 #}
 
-data "aws_iam_role" "eb-ec2-role" {
+data "aws_iam_role" "eb-service-role" {
   count = var.create_eb_roles == true ? 0 :1
-  name = var.ec2_role_name
+  name = var.eb_service_role_name
 }
 
 #resource "aws_iam_instance_profile" "eb-ec2-role" {
